@@ -35,55 +35,17 @@ struct Provider: TimelineProvider {
     }
 }
 
-struct MonthlyWidgetEntryView : View {
-    var entry: DayEntry
-
-    var body: some View {
-        ZStack {
-            ContainerRelativeShape()
-                .fill(.gray.gradient)
-            
-            VStack {
-                HStack {
-                    Text("🏂")
-                        .font(.title)
-                    
-                    Text(entry.date.weekdayDisplayFormat)
-                        .font(.title3)
-                        .bold()
-                        .minimumScaleFactor(0.6)
-                        .foregroundStyle(.black.opacity(0.6))
-                    
-                    Spacer()
-                }
-                
-                Text(entry.date.dayDisplayFormat)
-                    .font(.system(size: 80, weight: .heavy))
-                    .foregroundStyle(.white.opacity(0.8))
-            }
-            .padding()
-        }
-    }
-}
-
 struct MonthlyWidget: Widget {
     let kind: String = "MonthlyWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            MonthlyWidgetEntryView(entry: entry)
+            MonthlyWidgetView(entry: entry)
                 .containerBackground(.black, for: .widget)
         }
         .configurationDisplayName("Monthly Widget")
         .description("The theme of the widget changes based on month.")
         .supportedFamilies([.systemSmall])
         .contentMarginsDisabled()
-        
     }
-}
-
-#Preview(as: .systemSmall) {
-    MonthlyWidget()
-} timeline: {
-    DayEntry(date: .now)
 }
