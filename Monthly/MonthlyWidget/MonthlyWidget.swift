@@ -41,11 +41,10 @@ struct MonthlyWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             MonthlyWidgetView(entry: entry)
-                .containerBackground(.black, for: .widget)
         }
         .configurationDisplayName("Monthly Widget")
         .description("The theme of the widget changes based on month.")
         .supportedFamilies([.systemSmall])
-        .contentMarginsDisabled()
+        .disfavoredLocations([.lockScreen], for: [.systemSmall])
     }
 }

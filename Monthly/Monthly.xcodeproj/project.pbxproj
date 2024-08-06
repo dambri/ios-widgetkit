@@ -24,6 +24,7 @@
 		62755A632C6256E600865616 /* MonthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A622C6256E600865616 /* MonthConfig.swift */; };
 		62755A652C62584C00865616 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A642C62584C00865616 /* Color+Extension.swift */; };
 		62755A662C62584E00865616 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A642C62584C00865616 /* Color+Extension.swift */; };
+		62A3951D2C6263AE002BDD73 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A3951A2C62634D002BDD73 /* MockData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		62755A602C62561900865616 /* MonthlyWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyWidgetView.swift; sourceTree = "<group>"; };
 		62755A622C6256E600865616 /* MonthConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthConfig.swift; sourceTree = "<group>"; };
 		62755A642C62584C00865616 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		62A3951A2C62634D002BDD73 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				62755A602C62561900865616 /* MonthlyWidgetView.swift */,
 				62755A4B2C62274400865616 /* MonthlyWidget.swift */,
 				62755A5F2C6237C100865616 /* Models */,
+				62A3951C2C626351002BDD73 /* Mock */,
 				62755A4F2C62274600865616 /* Assets.xcassets */,
 				62755A512C62274600865616 /* Info.plist */,
 			);
@@ -167,6 +170,14 @@
 				62755A622C6256E600865616 /* MonthConfig.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		62A3951C2C626351002BDD73 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				62A3951A2C62634D002BDD73 /* MockData.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +297,7 @@
 				62755A612C62561900865616 /* MonthlyWidgetView.swift in Sources */,
 				62755A5C2C622D7C00865616 /* Date+Extension.swift in Sources */,
 				62755A4C2C62274400865616 /* MonthlyWidget.swift in Sources */,
+				62A3951D2C6263AE002BDD73 /* MockData.swift in Sources */,
 				62755A632C6256E600865616 /* MonthConfig.swift in Sources */,
 				62755A5E2C6237BD00865616 /* DayEntry.swift in Sources */,
 			);

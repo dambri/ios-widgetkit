@@ -9,6 +9,7 @@ import SwiftUI
 import WidgetKit
 
 struct MonthlyWidgetView: View {
+    @Environment(\.showsWidgetContainerBackground) var showBackground
     var entry: DayEntry
     private var config: MonthConfig
 
@@ -19,9 +20,6 @@ struct MonthlyWidgetView: View {
     
     var body: some View {
         ZStack {
-            ContainerRelativeShape()
-                .fill(config.backgroundColor.gradient)
-            
             VStack {
                 HStack {
                     Text(config.emojiText)
@@ -31,16 +29,23 @@ struct MonthlyWidgetView: View {
                         .font(.title3)
                         .bold()
                         .minimumScaleFactor(0.6)
-                        .foregroundStyle(config.weekdayTextColor)
+                        .foregroundStyle(showBackground ? config.weekdayTextColor : .white)
                     
                     Spacer()
                 }
+                .id(entry.date)
+                .transition(.push(from: .trailing))
+                .animation(.bouncy, value: entry.date)
                 
                 Text(entry.date.dayDisplayFormat)
                     .font(.system(size: 80, weight: .heavy))
-                    .foregroundStyle(config.dayTextColor)
+                    .foregroundStyle(showBackground ? config.dayTextColor : .white)
+                    .contentTransition(.numericText())
             }
-            .padding()
+            .containerBackground(for: .widget) {
+                ContainerRelativeShape()
+                    .fill(config.backgroundColor.gradient)
+            }
         }
     }
 }
@@ -49,11 +54,8 @@ struct MonthlyWidgetView: View {
     MonthlyWidget()
 } timeline: {
     DayEntry(date: .now)
-    DayEntry(date: dateToDisplay(month: 10, day: 22))
-}
-
-// Only here to test quickly different month and day
-func dateToDisplay(month: Int, day: Int) -> Date {
-    let components = DateComponents(calendar: Calendar.current, year: 2024, month: month, day: day)
-    return Calendar.current.date(from: components)!
+    MockData.dataOne
+    MockData.dataTwo
+    MockData.dataThree
+    MockData.dataFour
 }
