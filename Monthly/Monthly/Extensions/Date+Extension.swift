@@ -15,4 +15,8 @@ extension Date {
     var dayDisplayFormat: String {
         self.formatted(.dateTime.day())
     }
+    
+    var monthDisplayFormat: String {
+        self.formatted(.dateTime.month(.wide))
+    }
 }

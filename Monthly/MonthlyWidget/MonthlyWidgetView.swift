@@ -25,22 +25,34 @@ struct MonthlyWidgetView: View {
                     Text(config.emojiText)
                         .font(.title)
                     
-                    Text(entry.date.weekdayDisplayFormat)
-                        .font(.title3)
+                    Spacer()
+                    
+                    Text(entry.date.monthDisplayFormat)
+                        .font(.system(size: 12, weight: .heavy))
                         .bold()
                         .minimumScaleFactor(0.6)
-                        .foregroundStyle(showBackground ? config.weekdayTextColor : .white)
-                    
-                    Spacer()
+                        .foregroundStyle(showBackground ? config.monthTextColor : .white)
+                        .shadow(color: config.shadowColor, radius: 0.2)
+                        .scaledToFit()
                 }
                 .id(entry.date)
-                .transition(.push(from: .trailing))
+                .transition(.push(from: .bottom))
                 .animation(.bouncy, value: entry.date)
                 
-                Text(entry.date.dayDisplayFormat)
-                    .font(.system(size: 80, weight: .heavy))
-                    .foregroundStyle(showBackground ? config.dayTextColor : .white)
-                    .contentTransition(.numericText())
+                VStack(alignment: .center) {
+                    Text(entry.date.weekdayDisplayFormat)
+                        .font(.body)
+                        .bold()
+                        .minimumScaleFactor(0.6)
+                        .foregroundStyle(showBackground ? config.dayTextColor : .white)
+                        .shadow(color: config.shadowColor, radius: 0.2)
+                    
+                    Text(entry.date.dayDisplayFormat)
+                        .font(.system(size: 60, weight: .heavy))
+                        .foregroundStyle(showBackground ? config.dayTextColor : .white)
+                        .shadow(color: config.shadowColor, radius: 0.5, y: 1)
+                        .contentTransition(.numericText())
+                }
             }
             .containerBackground(for: .widget) {
                 ContainerRelativeShape()
@@ -58,4 +70,5 @@ struct MonthlyWidgetView: View {
     MockData.dataTwo
     MockData.dataThree
     MockData.dataFour
+    MockData.dataFive
 }
