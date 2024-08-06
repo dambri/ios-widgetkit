@@ -20,6 +20,10 @@
 		62755A5B2C622D4D00865616 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A5A2C622D4D00865616 /* Date+Extension.swift */; };
 		62755A5C2C622D7C00865616 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A5A2C622D4D00865616 /* Date+Extension.swift */; };
 		62755A5E2C6237BD00865616 /* DayEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A5D2C6237BD00865616 /* DayEntry.swift */; };
+		62755A612C62561900865616 /* MonthlyWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A602C62561900865616 /* MonthlyWidgetView.swift */; };
+		62755A632C6256E600865616 /* MonthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A622C6256E600865616 /* MonthConfig.swift */; };
+		62755A652C62584C00865616 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A642C62584C00865616 /* Color+Extension.swift */; };
+		62755A662C62584E00865616 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A642C62584C00865616 /* Color+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,9 @@
 		62755A512C62274600865616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62755A5A2C622D4D00865616 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		62755A5D2C6237BD00865616 /* DayEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEntry.swift; sourceTree = "<group>"; };
+		62755A602C62561900865616 /* MonthlyWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyWidgetView.swift; sourceTree = "<group>"; };
+		62755A622C6256E600865616 /* MonthConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthConfig.swift; sourceTree = "<group>"; };
+		62755A642C62584C00865616 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				62755A492C62274400865616 /* MonthlyWidgetBundle.swift */,
+				62755A602C62561900865616 /* MonthlyWidgetView.swift */,
 				62755A4B2C62274400865616 /* MonthlyWidget.swift */,
 				62755A5F2C6237C100865616 /* Models */,
 				62755A4F2C62274600865616 /* Assets.xcassets */,
@@ -147,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				62755A5A2C622D4D00865616 /* Date+Extension.swift */,
+				62755A642C62584C00865616 /* Color+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -155,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				62755A5D2C6237BD00865616 /* DayEntry.swift */,
+				62755A622C6256E600865616 /* MonthConfig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -263,6 +273,7 @@
 				62755A332C6226C300865616 /* ContentView.swift in Sources */,
 				62755A312C6226C300865616 /* MonthlyApp.swift in Sources */,
 				62755A5B2C622D4D00865616 /* Date+Extension.swift in Sources */,
+				62755A652C62584C00865616 /* Color+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,8 +282,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				62755A4A2C62274400865616 /* MonthlyWidgetBundle.swift in Sources */,
+				62755A662C62584E00865616 /* Color+Extension.swift in Sources */,
+				62755A612C62561900865616 /* MonthlyWidgetView.swift in Sources */,
 				62755A5C2C622D7C00865616 /* Date+Extension.swift in Sources */,
 				62755A4C2C62274400865616 /* MonthlyWidget.swift in Sources */,
+				62755A632C6256E600865616 /* MonthConfig.swift in Sources */,
 				62755A5E2C6237BD00865616 /* DayEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
