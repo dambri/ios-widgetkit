@@ -15,9 +15,11 @@
 		62755A472C62274400865616 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62755A462C62274400865616 /* SwiftUI.framework */; };
 		62755A4A2C62274400865616 /* MonthlyWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A492C62274400865616 /* MonthlyWidgetBundle.swift */; };
 		62755A4C2C62274400865616 /* MonthlyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A4B2C62274400865616 /* MonthlyWidget.swift */; };
-		62755A4E2C62274400865616 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A4D2C62274400865616 /* AppIntent.swift */; };
 		62755A502C62274600865616 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62755A4F2C62274600865616 /* Assets.xcassets */; };
 		62755A542C62274600865616 /* MonthlyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 62755A422C62274400865616 /* MonthlyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		62755A5B2C622D4D00865616 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A5A2C622D4D00865616 /* Date+Extension.swift */; };
+		62755A5C2C622D7C00865616 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A5A2C622D4D00865616 /* Date+Extension.swift */; };
+		62755A5E2C6237BD00865616 /* DayEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A5D2C6237BD00865616 /* DayEntry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,9 +57,10 @@
 		62755A462C62274400865616 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		62755A492C62274400865616 /* MonthlyWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyWidgetBundle.swift; sourceTree = "<group>"; };
 		62755A4B2C62274400865616 /* MonthlyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyWidget.swift; sourceTree = "<group>"; };
-		62755A4D2C62274400865616 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		62755A4F2C62274600865616 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62755A512C62274600865616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62755A5A2C622D4D00865616 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		62755A5D2C6237BD00865616 /* DayEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,7 @@
 				62755A302C6226C300865616 /* MonthlyApp.swift */,
 				62755A322C6226C300865616 /* ContentView.swift */,
 				62755A342C6226C400865616 /* Assets.xcassets */,
+				62755A592C622D2A00865616 /* Extensions */,
 				62755A362C6226C400865616 /* Preview Content */,
 			);
 			path = Monthly;
@@ -132,11 +136,27 @@
 			children = (
 				62755A492C62274400865616 /* MonthlyWidgetBundle.swift */,
 				62755A4B2C62274400865616 /* MonthlyWidget.swift */,
-				62755A4D2C62274400865616 /* AppIntent.swift */,
+				62755A5F2C6237C100865616 /* Models */,
 				62755A4F2C62274600865616 /* Assets.xcassets */,
 				62755A512C62274600865616 /* Info.plist */,
 			);
 			path = MonthlyWidget;
+			sourceTree = "<group>";
+		};
+		62755A592C622D2A00865616 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				62755A5A2C622D4D00865616 /* Date+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		62755A5F2C6237C100865616 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				62755A5D2C6237BD00865616 /* DayEntry.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +262,7 @@
 			files = (
 				62755A332C6226C300865616 /* ContentView.swift in Sources */,
 				62755A312C6226C300865616 /* MonthlyApp.swift in Sources */,
+				62755A5B2C622D4D00865616 /* Date+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,8 +271,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				62755A4A2C62274400865616 /* MonthlyWidgetBundle.swift in Sources */,
+				62755A5C2C622D7C00865616 /* Date+Extension.swift in Sources */,
 				62755A4C2C62274400865616 /* MonthlyWidget.swift in Sources */,
-				62755A4E2C62274400865616 /* AppIntent.swift in Sources */,
+				62755A5E2C6237BD00865616 /* DayEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,45 +8,60 @@
 import WidgetKit
 import SwiftUI
 
-struct Provider: AppIntentTimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
-    }
-
-    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: configuration)
+struct Provider: TimelineProvider {
+    func placeholder(in context: Context) -> DayEntry {
+        DayEntry(date: Date())
     }
     
-    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        var entries: [SimpleEntry] = []
+    func getSnapshot(in context: Context, completion: @escaping (DayEntry) -> Void) {
+        let entry = DayEntry(date: Date())
+        completion(entry)
+    }
+    
+    func getTimeline(in context: Context, completion: @escaping (Timeline<DayEntry>) -> Void) {
+        var entries: [DayEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+        // Generate a timeline consisting of seven entries an hour apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
+        for dayOffset in 0 ..< 7 {
+            let entryDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: currentDate)!
+            let startOfDate =  Calendar.current.startOfDay(for: entryDate)
+            let entry = DayEntry(date: startOfDate)
             entries.append(entry)
         }
 
-        return Timeline(entries: entries, policy: .atEnd)
+        let timeline = Timeline(entries: entries, policy: .atEnd)
+        completion(timeline)
     }
 }
 
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let configuration: ConfigurationAppIntent
-}
-
 struct MonthlyWidgetEntryView : View {
-    var entry: Provider.Entry
+    var entry: DayEntry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Favorite Emoji:")
-            Text(entry.configuration.favoriteEmoji)
+        ZStack {
+            ContainerRelativeShape()
+                .fill(.gray.gradient)
+            
+            VStack {
+                HStack {
+                    Text("🏂")
+                        .font(.title)
+                    
+                    Text(entry.date.weekdayDisplayFormat)
+                        .font(.title3)
+                        .bold()
+                        .minimumScaleFactor(0.6)
+                        .foregroundStyle(.black.opacity(0.6))
+                    
+                    Spacer()
+                }
+                
+                Text(entry.date.dayDisplayFormat)
+                    .font(.system(size: 80, weight: .heavy))
+                    .foregroundStyle(.white.opacity(0.8))
+            }
+            .padding()
         }
     }
 }
@@ -55,30 +70,20 @@ struct MonthlyWidget: Widget {
     let kind: String = "MonthlyWidget"
 
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
             MonthlyWidgetEntryView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+                .containerBackground(.black, for: .widget)
         }
-    }
-}
-
-extension ConfigurationAppIntent {
-    fileprivate static var smiley: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "😀"
-        return intent
-    }
-    
-    fileprivate static var starEyes: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "🤩"
-        return intent
+        .configurationDisplayName("Monthly Widget")
+        .description("The theme of the widget changes based on month.")
+        .supportedFamilies([.systemSmall])
+        .contentMarginsDisabled()
+        
     }
 }
 
 #Preview(as: .systemSmall) {
     MonthlyWidget()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
-    SimpleEntry(date: .now, configuration: .starEyes)
+    DayEntry(date: .now)
 }
