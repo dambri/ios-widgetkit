@@ -9,7 +9,7 @@ import WidgetKit
 import SwiftUI
 
 struct RepoWatcherWidgetEntryView: View {
-    var entry: Provider.Entry
+    var entry: RepoEntry
 
     var body: some View {
         HStack {
@@ -18,7 +18,7 @@ struct RepoWatcherWidgetEntryView: View {
                     Circle()
                         .frame(width: 50, height: 50)
                     
-                    Text("Repo watcher")
+                    Text(entry.repo.name)
                         .font(.title2)
                         .fontWeight(.semibold)
                         .minimumScaleFactor(0.6)
@@ -27,9 +27,9 @@ struct RepoWatcherWidgetEntryView: View {
                 .padding(.bottom, 6)
                 
                 HStack {
-                    StatLabelView(value: 999, systemImageName: "star.fill")
-                    StatLabelView(value: 999, systemImageName: "tuningfork")
-                    StatLabelView(value: 999, systemImageName: "exclamationmark.triangle.fill")
+                    StatLabelView(value: entry.repo.watchers, systemImageName: "star.fill")
+                    StatLabelView(value: entry.repo.forks, systemImageName: "tuningfork")
+                    StatLabelView(value: entry.repo.openIssues, systemImageName: "exclamationmark.triangle.fill")
                 }
             }
             
@@ -54,5 +54,5 @@ struct RepoWatcherWidgetEntryView: View {
 #Preview(as: .systemMedium) {
     RepoWatcherWidget()
 } timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
+    RepoEntry(date: .now, repo: Repository.placeholder)
 }
