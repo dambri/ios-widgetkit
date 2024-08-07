@@ -10,11 +10,11 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> RepoEntry {
-        RepoEntry(date: Date(), repo: Repository.placeholder)
+        RepoEntry(date: Date(), repo: Repository.placeholder, avatarImageData: Data())
     }
 
     func getSnapshot(in context: Context, completion: @escaping (RepoEntry) -> ()) {
-        let entry = RepoEntry(date: Date(), repo: Repository.placeholder)
+        let entry = RepoEntry(date: Date(), repo: Repository.placeholder, avatarImageData: Data())
         completion(entry)
     }
 
@@ -24,7 +24,8 @@ struct Provider: TimelineProvider {
 
             do {
                 let repo = try await NetworkManager.shared.getRepo(atUrl: RepoURL.widgetKit)
-                let entry = RepoEntry(date: .now, repo: repo)
+                let avatarData = await NetworkManager.shared.downloadImageData(from: repo.owner.avatarUrl)
+                let entry = RepoEntry(date: .now, repo: repo, avatarImageData: avatarData ?? Data())
                 let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
                 completion(timeline)
             } catch {
@@ -37,6 +38,7 @@ struct Provider: TimelineProvider {
 struct RepoEntry: TimelineEntry {
     let date: Date
     let repo: Repository
+    let avatarImageData: Data
 }
 
 struct RepoWatcherWidget: Widget {
