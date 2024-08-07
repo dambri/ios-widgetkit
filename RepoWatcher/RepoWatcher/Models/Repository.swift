@@ -15,6 +15,7 @@ struct Repository: Decodable {
     let watchers: Int
     let forks: Int
     let pushedAt: String
+    var avatarData: Data
     
     static let placeholder = Repository(name: "Your Repo",
                                         owner: Owner(avatarUrl: ""),
@@ -22,7 +23,31 @@ struct Repository: Decodable {
                                         openIssues: 65,
                                         watchers: 123,
                                         forks: 55,
-                                        pushedAt: "2022-08-09T18:19:30Z")
+                                        pushedAt: "2022-08-09T18:19:30Z",
+                                        avatarData: Data())
+}
+
+extension Repository {
+    struct CodingData: Decodable {
+        let name: String
+        let owner: Owner
+        let hasIssues: Bool
+        let openIssues: Int
+        let watchers: Int
+        let forks: Int
+        let pushedAt: String
+        
+        var repo: Repository {
+            Repository(name: name,
+                       owner: owner,
+                       hasIssues: hasIssues,
+                       openIssues: openIssues,
+                       watchers: watchers,
+                       forks: forks,
+                       pushedAt: pushedAt,
+                       avatarData: Data())
+        }
+    }
 }
 
 struct Owner: Decodable {

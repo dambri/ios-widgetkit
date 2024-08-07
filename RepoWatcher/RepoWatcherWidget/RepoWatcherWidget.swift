@@ -10,11 +10,11 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> RepoEntry {
-        RepoEntry(date: Date(), repo: Repository.placeholder, avatarImageData: Data())
+        RepoEntry(date: Date(), repo: Repository.placeholder)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (RepoEntry) -> ()) {
-        let entry = RepoEntry(date: Date(), repo: Repository.placeholder, avatarImageData: Data())
+        let entry = RepoEntry(date: Date(), repo: Repository.placeholder)
         completion(entry)
     }
 
@@ -23,9 +23,10 @@ struct Provider: TimelineProvider {
             let nextUpdate = Date().addingTimeInterval(43200) // 12 hours in seconds
 
             do {
-                let repo = try await NetworkManager.shared.getRepo(atUrl: RepoURL.widgetKit)
+                var repo = try await NetworkManager.shared.getRepo(atUrl: RepoURL.widgetKit)
                 let avatarData = await NetworkManager.shared.downloadImageData(from: repo.owner.avatarUrl)
-                let entry = RepoEntry(date: .now, repo: repo, avatarImageData: avatarData ?? Data())
+                repo.avatarData = avatarData ?? Data()
+                let entry = RepoEntry(date: .now, repo: repo)
                 let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
                 completion(timeline)
             } catch {
@@ -38,7 +39,6 @@ struct Provider: TimelineProvider {
 struct RepoEntry: TimelineEntry {
     let date: Date
     let repo: Repository
-    let avatarImageData: Data
 }
 
 struct RepoWatcherWidget: Widget {
@@ -57,7 +57,7 @@ struct RepoWatcherWidget: Widget {
         }
         .configurationDisplayName("Repo Watchert")
         .description("Get Github repository informations.")
-        .supportedFamilies([.systemMedium])
+        .supportedFamilies([.systemMedium, .systemLarge])
     }
 }
 
