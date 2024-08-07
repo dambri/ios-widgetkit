@@ -10,6 +10,10 @@ import SwiftUI
 
 struct RepoWatcherWidgetEntryView: View {
     var entry: RepoEntry
+    private let formatter = ISO8601DateFormatter()
+    private var daySinceLastActivity: Int {
+        calculateDaysSinceLastActivity(from: entry.repo.pushedAt)
+    }
 
     var body: some View {
         HStack {
@@ -36,18 +40,25 @@ struct RepoWatcherWidgetEntryView: View {
             Spacer()
             
             VStack {
-                Text("99")
+                Text("\(daySinceLastActivity)")
                     .bold()
                     .font(.system(size: 70))
                     .frame(width: 90)
                     .minimumScaleFactor(0.6)
                     .lineLimit(1)
+                    .foregroundStyle(daySinceLastActivity > 50 ? .pink : .green)
                 
                 Text("days ago")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }
         }
+    }
+    
+    fileprivate func calculateDaysSinceLastActivity(from dateString: String) -> Int {
+        let lastActivityDate = formatter.date(from: dateString) ?? .now
+        let daySinceLastActivity = Calendar.current.dateComponents([.day], from: lastActivityDate, to: .now).day
+        return daySinceLastActivity ?? 0
     }
 }
 
