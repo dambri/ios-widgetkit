@@ -23,6 +23,7 @@
 		625E74702C6374D500915B2F /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E746E2C6374D500915B2F /* Repository.swift */; };
 		625E74722C637DF900915B2F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E74712C637DF900915B2F /* NetworkManager.swift */; };
 		625E74732C637DF900915B2F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E74712C637DF900915B2F /* NetworkManager.swift */; };
+		625E74762C639AD500915B2F /* RepoMediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E74742C639A9100915B2F /* RepoMediumView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		625E746C2C6370EE00915B2F /* StatLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatLabelView.swift; sourceTree = "<group>"; };
 		625E746E2C6374D500915B2F /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		625E74712C637DF900915B2F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		625E74742C639A9100915B2F /* RepoMediumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoMediumView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				625E745A2C636E5B00915B2F /* RepoWatcherWidgetBundle.swift */,
 				625E745C2C636E5B00915B2F /* RepoWatcherWidget.swift */,
 				625E74682C636E8400915B2F /* RepoWatcherWidgetEntryView.swift */,
+				625E74742C639A9100915B2F /* RepoMediumView.swift */,
 				625E746B2C6370D800915B2F /* UI */,
 				625E745E2C636E5C00915B2F /* Assets.xcassets */,
 				625E74602C636E5C00915B2F /* Info.plist */,
@@ -284,6 +287,7 @@
 				625E74702C6374D500915B2F /* Repository.swift in Sources */,
 				625E745B2C636E5B00915B2F /* RepoWatcherWidgetBundle.swift in Sources */,
 				625E74692C636E8400915B2F /* RepoWatcherWidgetEntryView.swift in Sources */,
+				625E74762C639AD500915B2F /* RepoMediumView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

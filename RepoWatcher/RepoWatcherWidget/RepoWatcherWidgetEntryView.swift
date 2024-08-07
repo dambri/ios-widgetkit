@@ -9,63 +9,28 @@ import WidgetKit
 import SwiftUI
 
 struct RepoWatcherWidgetEntryView: View {
+    @Environment(\.widgetFamily) var family
     var entry: RepoEntry
-    private let formatter = ISO8601DateFormatter()
-    private var daySinceLastActivity: Int {
-        calculateDaysSinceLastActivity(from: entry.repo.pushedAt)
-    }
 
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                HStack {
-                    Image(uiImage: UIImage(data: entry.avatarImageData) ?? UIImage(named: "avatar")!)
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .clipShape(Circle())
-                    
-                    Text(entry.repo.name)
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .minimumScaleFactor(0.6)
-                        .lineLimit(1)
+        switch family {
+            case .systemMedium:
+                RepoMediumView(repo: entry.repo)
+            case .systemLarge:
+                VStack(spacing: 36) {
+                    RepoMediumView(repo: entry.repo)
+                    RepoMediumView(repo: entry.repo)
                 }
-                .padding(.bottom, 6)
-                
-                HStack {
-                    StatLabelView(value: entry.repo.watchers, systemImageName: "star.fill")
-                    StatLabelView(value: entry.repo.forks, systemImageName: "tuningfork")
-                    StatLabelView(value: entry.repo.openIssues, systemImageName: "exclamationmark.triangle.fill")
-                }
-            }
-            
-            Spacer()
-            
-            VStack {
-                Text("\(daySinceLastActivity)")
-                    .bold()
-                    .font(.system(size: 70))
-                    .frame(width: 90)
-                    .minimumScaleFactor(0.6)
-                    .lineLimit(1)
-                    .foregroundStyle(daySinceLastActivity > 50 ? .pink : .green)
-                
-                Text("days ago")
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-            }
+            case .systemSmall, .systemExtraLarge, .accessoryInline, .accessoryCircular, .accessoryRectangular:
+                EmptyView()
+            @unknown default:
+                EmptyView()
         }
-    }
-    
-    fileprivate func calculateDaysSinceLastActivity(from dateString: String) -> Int {
-        let lastActivityDate = formatter.date(from: dateString) ?? .now
-        let daySinceLastActivity = Calendar.current.dateComponents([.day], from: lastActivityDate, to: .now).day
-        return daySinceLastActivity ?? 0
     }
 }
 
-#Preview(as: .systemMedium) {
+#Preview(as: .systemLarge) {
     RepoWatcherWidget()
 } timeline: {
-    RepoEntry(date: .now, repo: Repository.placeholder, avatarImageData: Data())
+    RepoEntry(date: .now, repo: Repository.placeholder)
 }
