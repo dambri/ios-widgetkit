@@ -19,8 +19,10 @@ struct RepoWatcherWidgetEntryView: View {
         HStack {
             VStack(alignment: .leading) {
                 HStack {
-                    Circle()
+                    Image(uiImage: UIImage(data: entry.avatarImageData) ?? UIImage(named: "avatar")!)
+                        .resizable()
                         .frame(width: 50, height: 50)
+                        .clipShape(Circle())
                     
                     Text(entry.repo.name)
                         .font(.title2)
@@ -65,5 +67,5 @@ struct RepoWatcherWidgetEntryView: View {
 #Preview(as: .systemMedium) {
     RepoWatcherWidget()
 } timeline: {
-    RepoEntry(date: .now, repo: Repository.placeholder)
+    RepoEntry(date: .now, repo: Repository.placeholder, avatarImageData: Data())
 }
