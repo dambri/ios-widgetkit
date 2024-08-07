@@ -8,9 +8,9 @@
 import WidgetKit
 import SwiftUI
 
-struct RepoWatcherWidgetEntryView: View {
+struct CompactRepoEntryView: View {
     @Environment(\.widgetFamily) var family
-    var entry: RepoEntry
+    var entry: CompactRepoEntry
 
     var body: some View {
         switch family {
@@ -32,7 +32,7 @@ struct RepoWatcherWidgetEntryView: View {
 }
 
 #Preview(as: .systemLarge) {
-    RepoWatcherWidget()
+    CompactRepoWidget()
 } timeline: {
-    RepoEntry(date: .now, repo: MockData.repoOne, bottomRepo: MockData.repoTwo)
+    CompactRepoEntry(date: .now, repo: MockData.repoOne, bottomRepo: MockData.repoTwo)
 }
