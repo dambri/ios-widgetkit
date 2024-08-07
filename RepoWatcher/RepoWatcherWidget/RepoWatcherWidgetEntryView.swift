@@ -19,7 +19,9 @@ struct RepoWatcherWidgetEntryView: View {
             case .systemLarge:
                 VStack(spacing: 36) {
                     RepoMediumView(repo: entry.repo)
-                    RepoMediumView(repo: entry.repo)
+                    if let bottomRepo = entry.bottomRepo {
+                        RepoMediumView(repo: bottomRepo)
+                    }
                 }
             case .systemSmall, .systemExtraLarge, .accessoryInline, .accessoryCircular, .accessoryRectangular:
                 EmptyView()
@@ -32,5 +34,5 @@ struct RepoWatcherWidgetEntryView: View {
 #Preview(as: .systemLarge) {
     RepoWatcherWidget()
 } timeline: {
-    RepoEntry(date: .now, repo: Repository.placeholder)
+    RepoEntry(date: .now, repo: MockData.repoOne, bottomRepo: MockData.repoTwo)
 }

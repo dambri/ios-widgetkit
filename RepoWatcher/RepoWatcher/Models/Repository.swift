@@ -15,16 +15,7 @@ struct Repository: Decodable {
     let watchers: Int
     let forks: Int
     let pushedAt: String
-    var avatarData: Data
-    
-    static let placeholder = Repository(name: "Your Repo",
-                                        owner: Owner(avatarUrl: ""),
-                                        hasIssues: true,
-                                        openIssues: 65,
-                                        watchers: 123,
-                                        forks: 55,
-                                        pushedAt: "2022-08-09T18:19:30Z",
-                                        avatarData: Data())
+    var avatarData: Data 
 }
 
 extension Repository {
