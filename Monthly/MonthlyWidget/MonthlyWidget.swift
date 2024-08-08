@@ -8,20 +8,19 @@
 import WidgetKit
 import SwiftUI
 
-struct Provider: IntentTimelineProvider {
+struct Provider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> DayEntry {
         DayEntry(date: Date(), showFunFont: false)
     }
     
-    func getSnapshot(for configuration: ChangeFontIntent, in context: Context, completion: @escaping (DayEntry) -> Void) {
-        let entry = DayEntry(date: Date(), showFunFont: false)
-        completion(entry)
+    func snapshot(for configuration: ChangeFontIntent, in context: Context) async -> DayEntry {
+        return DayEntry(date: Date(), showFunFont: false)
     }
     
-    func getTimeline(for configuration: ChangeFontIntent, in context: Context, completion: @escaping (Timeline<DayEntry>) -> Void) {
+    func timeline(for configuration: ChangeFontIntent, in context: Context) async -> Timeline<DayEntry> {
         var entries: [DayEntry] = []
 
-        let showFunFont = configuration.funFont == 1
+        let showFunFont = configuration.funFont
         
         // Generate a timeline consisting of seven entries an hour apart, starting from the current date.
         let currentDate = Date()
@@ -32,8 +31,7 @@ struct Provider: IntentTimelineProvider {
             entries.append(entry)
         }
 
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+        return Timeline(entries: entries, policy: .atEnd)
     }
 }
 
@@ -41,7 +39,7 @@ struct MonthlyWidget: Widget {
     let kind: String = "MonthlyWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ChangeFontIntent.self, provider: Provider()) { entry in
+        AppIntentConfiguration(kind: kind, intent: ChangeFontIntent.self, provider: Provider()) { entry in
             MonthlyWidgetView(entry: entry)
         }
         .configurationDisplayName("Monthly Widget")
@@ -50,3 +48,5 @@ struct MonthlyWidget: Widget {
         .disfavoredLocations([.lockScreen], for: [.systemSmall])
     }
 }
+
+
