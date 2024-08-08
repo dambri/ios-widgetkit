@@ -15,6 +15,7 @@ struct StatLabelView: View {
         Label {
             Text("\(value)")
                 .font(.footnote)
+                .contentTransition(.numericText())
         } icon: {
             Image(systemName: systemImageName)
                 .foregroundStyle(.green)

@@ -74,6 +74,6 @@ struct ContributorWidget: Widget {
         }
         .configurationDisplayName("Contributors")
         .description("Keep track of a repository's top contributors.")
-        .supportedFamilies([.systemLarge])
+        .supportedFamilies([.systemLarge, .systemMedium])
     }
 }
