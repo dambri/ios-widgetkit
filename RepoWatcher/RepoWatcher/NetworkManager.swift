@@ -35,6 +35,25 @@ class NetworkManager {
         }
     }
     
+    func getContributors(atUrl urlString: String) async throws -> [Contributor] {
+        guard let url = URL(string: urlString) else {
+            throw NetworkError.invalidRepoUrl
+        }
+        
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let safeResponse = response as? HTTPURLResponse, safeResponse.statusCode == 200 else {
+            throw NetworkError.invalidResponse
+        }
+        
+        do {
+            let codingData = try decoder.decode([Contributor.CodingData].self, from: data)
+            return codingData.map { $0.contributor }
+        } catch {
+            throw NetworkError.invalidRepoData
+        }
+    }
+    
     func downloadImageData(from urlString: String) async -> Data? {
         guard let url = URL(string: urlString) else {
             return nil
@@ -58,4 +77,5 @@ enum NetworkError: Error {
 enum RepoURL {
     static let widgetKit = "https://api.github.com/repos/dambri/ios-widgetkit"
     static let discordBot = "https://api.github.com/repos/dambri/sagira-discord-bot"
+    static let contributors = "https://api.github.com/repos/dambri/ios-widgetkit/contributors"
 }
