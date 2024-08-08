@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Repository: Decodable {
+struct Repository {
     let name: String
     let owner: Owner
     let hasIssues: Bool
@@ -15,7 +15,8 @@ struct Repository: Decodable {
     let watchers: Int
     let forks: Int
     let pushedAt: String
-    var avatarData: Data 
+    var avatarData: Data
+    var contributors: [Contributor] = []
 }
 
 extension Repository {
