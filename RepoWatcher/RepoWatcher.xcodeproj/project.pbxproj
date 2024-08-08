@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		621E068C2C64BD2A001B1370 /* ContributorMediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E068B2C64BD2A001B1370 /* ContributorMediumView.swift */; };
 		625E74422C636E4A00915B2F /* RepoWatcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E74412C636E4A00915B2F /* RepoWatcherApp.swift */; };
 		625E74442C636E4A00915B2F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E74432C636E4A00915B2F /* ContentView.swift */; };
 		625E74462C636E4B00915B2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 625E74452C636E4B00915B2F /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		621E068B2C64BD2A001B1370 /* ContributorMediumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorMediumView.swift; sourceTree = "<group>"; };
 		625E743E2C636E4A00915B2F /* RepoWatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RepoWatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		625E74412C636E4A00915B2F /* RepoWatcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoWatcherApp.swift; sourceTree = "<group>"; };
 		625E74432C636E4A00915B2F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			children = (
 				628AE01F2C63AE990007EBFB /* ContributorWidget.swift */,
 				628AE0232C63AFB20007EBFB /* ContributorEntryView.swift */,
+				621E068B2C64BD2A001B1370 /* ContributorMediumView.swift */,
 			);
 			path = Contributor;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				625E74732C637DF900915B2F /* NetworkManager.swift in Sources */,
+				621E068C2C64BD2A001B1370 /* ContributorMediumView.swift in Sources */,
 				625E745D2C636E5B00915B2F /* CompactRepoWidget.swift in Sources */,
 				625E746D2C6370EE00915B2F /* StatLabelView.swift in Sources */,
 				625E74702C6374D500915B2F /* Repository.swift in Sources */,

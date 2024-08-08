@@ -10,17 +10,17 @@ import WidgetKit
 
 struct ContributorProvider: TimelineProvider {
     func placeholder(in context: Context) -> ContributorEntry {
-        ContributorEntry(date: .now)
+        ContributorEntry(date: .now, repo: MockData.repoOne)
     }
     
     func getSnapshot(in context: Context, completion: @escaping (ContributorEntry) -> Void) {
-        let entry = ContributorEntry(date: .now)
+        let entry = ContributorEntry(date: .now, repo: MockData.repoOne)
         completion(entry)
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<ContributorEntry>) -> Void) {
         let nextUpdate = Date().addingTimeInterval(43200) // 12 hours in seconds
-        let entry = ContributorEntry(date: .now)
+        let entry = ContributorEntry(date: .now, repo: MockData.repoOne)
         let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
         completion(timeline)
     }
@@ -28,6 +28,7 @@ struct ContributorProvider: TimelineProvider {
 
 struct ContributorEntry: TimelineEntry {
     var date: Date
+    let repo: Repository
 }
 
 struct ContributorWidget: Widget {
