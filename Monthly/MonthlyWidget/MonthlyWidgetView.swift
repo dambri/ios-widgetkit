@@ -12,6 +12,7 @@ struct MonthlyWidgetView: View {
     @Environment(\.showsWidgetContainerBackground) var showBackground
     var entry: DayEntry
     private var config: MonthConfig
+    private let funFontName = "Chalkduster"
 
     init(entry: DayEntry) {
         self.entry = entry
@@ -28,7 +29,7 @@ struct MonthlyWidgetView: View {
                     Spacer()
                     
                     Text(entry.date.monthDisplayFormat)
-                        .font(.system(size: 12, weight: .heavy))
+                        .font(entry.showFunFont ? .custom(funFontName, size: 12) : .system(size: 12, weight: .heavy))
                         .bold()
                         .minimumScaleFactor(0.6)
                         .foregroundStyle(showBackground ? config.monthTextColor : .white)
@@ -41,14 +42,14 @@ struct MonthlyWidgetView: View {
                 
                 VStack(alignment: .center) {
                     Text(entry.date.weekdayDisplayFormat)
-                        .font(.body)
+                        .font(entry.showFunFont ? .custom(funFontName, size: 24) : .body)
                         .bold()
                         .minimumScaleFactor(0.6)
                         .foregroundStyle(showBackground ? config.dayTextColor : .white)
                         .shadow(color: config.shadowColor, radius: 0.2)
                     
                     Text(entry.date.dayDisplayFormat)
-                        .font(.system(size: 60, weight: .heavy))
+                        .font(entry.showFunFont ? .custom(funFontName, size: 60) : .system(size: 60, weight: .heavy))
                         .foregroundStyle(showBackground ? config.dayTextColor : .white)
                         .shadow(color: config.shadowColor, radius: 0.5, y: 1)
                         .contentTransition(.numericText())
@@ -65,7 +66,7 @@ struct MonthlyWidgetView: View {
 #Preview(as: .systemSmall) {
     MonthlyWidget()
 } timeline: {
-    DayEntry(date: .now)
+    DayEntry(date: .now, showFunFont: false)
     MockData.dataOne
     MockData.dataTwo
     MockData.dataThree

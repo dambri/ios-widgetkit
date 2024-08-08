@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		621E06942C64E6F6001B1370 /* MonthlyWidgetIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 621E06932C64E6F6001B1370 /* MonthlyWidgetIntents.intentdefinition */; };
+		621E06952C64E6F6001B1370 /* MonthlyWidgetIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 621E06932C64E6F6001B1370 /* MonthlyWidgetIntents.intentdefinition */; };
+		621E06982C64E7C1001B1370 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A3951A2C62634D002BDD73 /* MockData.swift */; };
+		621E06992C64E9FC001B1370 /* DayEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A5D2C6237BD00865616 /* DayEntry.swift */; };
 		62755A312C6226C300865616 /* MonthlyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A302C6226C300865616 /* MonthlyApp.swift */; };
 		62755A332C6226C300865616 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62755A322C6226C300865616 /* ContentView.swift */; };
 		62755A352C6226C400865616 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62755A342C6226C400865616 /* Assets.xcassets */; };
@@ -52,6 +56,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		621E06932C64E6F6001B1370 /* MonthlyWidgetIntents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = MonthlyWidgetIntents.intentdefinition; sourceTree = "<group>"; };
+		621E06962C64E738001B1370 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		62755A2D2C6226C300865616 /* Monthly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monthly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62755A302C6226C300865616 /* MonthlyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyApp.swift; sourceTree = "<group>"; };
 		62755A322C6226C300865616 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +98,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		621E06972C64E7B2001B1370 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				621E06932C64E6F6001B1370 /* MonthlyWidgetIntents.intentdefinition */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
 		62755A242C6226C300865616 = {
 			isa = PBXGroup;
 			children = (
@@ -114,10 +128,13 @@
 		62755A2F2C6226C300865616 /* Monthly */ = {
 			isa = PBXGroup;
 			children = (
+				621E06962C64E738001B1370 /* Info.plist */,
 				62755A302C6226C300865616 /* MonthlyApp.swift */,
 				62755A322C6226C300865616 /* ContentView.swift */,
 				62755A342C6226C400865616 /* Assets.xcassets */,
 				62755A592C622D2A00865616 /* Extensions */,
+				62A3951C2C626351002BDD73 /* Mock */,
+				62755A5F2C6237C100865616 /* Models */,
 				62755A362C6226C400865616 /* Preview Content */,
 			);
 			path = Monthly;
@@ -146,8 +163,7 @@
 				62755A492C62274400865616 /* MonthlyWidgetBundle.swift */,
 				62755A602C62561900865616 /* MonthlyWidgetView.swift */,
 				62755A4B2C62274400865616 /* MonthlyWidget.swift */,
-				62755A5F2C6237C100865616 /* Models */,
-				62A3951C2C626351002BDD73 /* Mock */,
+				621E06972C64E7B2001B1370 /* Intents */,
 				62755A4F2C62274600865616 /* Assets.xcassets */,
 				62755A512C62274600865616 /* Info.plist */,
 			);
@@ -282,7 +298,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				62755A332C6226C300865616 /* ContentView.swift in Sources */,
+				621E06982C64E7C1001B1370 /* MockData.swift in Sources */,
+				621E06992C64E9FC001B1370 /* DayEntry.swift in Sources */,
 				62755A312C6226C300865616 /* MonthlyApp.swift in Sources */,
+				621E06942C64E6F6001B1370 /* MonthlyWidgetIntents.intentdefinition in Sources */,
 				62755A5B2C622D4D00865616 /* Date+Extension.swift in Sources */,
 				62755A652C62584C00865616 /* Color+Extension.swift in Sources */,
 			);
@@ -296,6 +315,7 @@
 				62755A662C62584E00865616 /* Color+Extension.swift in Sources */,
 				62755A612C62561900865616 /* MonthlyWidgetView.swift in Sources */,
 				62755A5C2C622D7C00865616 /* Date+Extension.swift in Sources */,
+				621E06952C64E6F6001B1370 /* MonthlyWidgetIntents.intentdefinition in Sources */,
 				62755A4C2C62274400865616 /* MonthlyWidget.swift in Sources */,
 				62A3951D2C6263AE002BDD73 /* MockData.swift in Sources */,
 				62755A632C6256E600865616 /* MonthConfig.swift in Sources */,
@@ -445,6 +465,7 @@
 				DEVELOPMENT_TEAM = 3P7CETXY8N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Monthly/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -476,6 +497,7 @@
 				DEVELOPMENT_TEAM = 3P7CETXY8N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Monthly/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
