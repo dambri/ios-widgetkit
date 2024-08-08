@@ -9,6 +9,10 @@ The purpose of this repository is to learn and practice with iOS WidgetKit.
 This is a widget to get current month and day. 
 Background color, text color and emoji change based on current month.
 
+## Custom parameter
+
+You can change the font of day and month texts. Made with AppIntent.
+
 #### Target
 
 Minimum iOS version: iOS 17.0
@@ -17,7 +21,7 @@ Minimum iOS version: iOS 17.0
 
 ## Repo Watcher widget
 
-Track GitHub repositories informations and contributors.
+Track GitHub repositories informations and contributors with network calls every 12 hours.
 
 ### Repo widget
 
