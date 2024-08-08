@@ -13,7 +13,8 @@ struct ContributorEntryView: View {
 
     var body: some View {
         VStack {
-            Text(entry.date.formatted())
+            RepoMediumView(repo: entry.repo)
+            ContributorMediumView()
         }
         .containerBackground(for: .widget) {
             
@@ -23,7 +24,7 @@ struct ContributorEntryView: View {
 
 struct ContributorEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        ContributorEntryView(entry: ContributorEntry(date: Date()))
+        ContributorEntryView(entry: ContributorEntry(date: Date(), repo: MockData.repoOne))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
