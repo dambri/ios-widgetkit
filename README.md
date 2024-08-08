@@ -1,5 +1,7 @@
 # iOS Widgetkit
 
+The purpose of this repository is to learn and practice with iOS WidgetKit.
+
 ## Monthly widget
 
 This is a widget to get current month and day. 
