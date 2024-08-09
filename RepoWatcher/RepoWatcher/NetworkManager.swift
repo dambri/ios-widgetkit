@@ -75,7 +75,8 @@ enum NetworkError: Error {
 }
 
 enum RepoURL {
+    static let prefix = "https://api.github.com/repos/"
     static let widgetKit = "https://api.github.com/repos/dambri/ios-widgetkit"
     static let discordBot = "https://api.github.com/repos/dambri/sagira-discord-bot"
-    static let contributors = "https://api.github.com/repos/dambri/ios-widgetkit/contributors"
+    static let contributors = "/contributors"
 }
