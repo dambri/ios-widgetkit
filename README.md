@@ -9,8 +9,6 @@ The purpose of this repository is to learn and practice with iOS WidgetKit.
 This is a widget to get current month and day. 
 Background color, text color and emoji change based on current month.
 
-## Custom parameter
-
 You can change the font of the day and month texts. Made with AppIntent.
 
 #### Target
