@@ -32,7 +32,7 @@ struct SingleRepoEntryView: View {
         }
 }
 
-#Preview(as: .systemMedium) {
+#Preview(as: .systemLarge) {
     SingleRepoWidget()
 } timeline: {
     SingleRepoEntry(date: .now, repo: MockData.repoOne)
