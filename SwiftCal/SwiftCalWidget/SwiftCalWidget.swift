@@ -7,36 +7,49 @@
 
 import WidgetKit
 import SwiftUI
+import CoreData
 
 struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+    private let viewContext = PersistenceController.shared.container.viewContext
+    
+    private var dayFetchRequest: NSFetchRequest<Day> {
+        let request = Day.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Day.date, ascending: true)]
+        request.predicate = NSPredicate(format: "(date >= %@) AND (date <= %@)",
+                                        Date().startOfCalendarWithPrefixDays as CVarArg,
+                                        Date().endOfMonth as CVarArg)
+        return request
+    }
+    
+    func placeholder(in context: Context) -> CalendarEntry {
+        CalendarEntry(date: Date(), days: [])
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
-        completion(entry)
+    func getSnapshot(in context: Context, completion: @escaping (CalendarEntry) -> ()) {
+        do {
+            let days = try viewContext.fetch(dayFetchRequest)
+            let entry = CalendarEntry(date: Date(), days: days)
+            completion(entry)
+        } catch {
+            print("Widget failed to fetch days in snapshot")
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
+        do {
+            let days = try viewContext.fetch(dayFetchRequest)
+            let entry = CalendarEntry(date: Date(), days: days)
+            let timeline = Timeline(entries: [entry], policy: .after(.now.endOfDay))
+            completion(timeline)
+        } catch {
+            print("Widget failed to fetch days in snapshot")
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct CalendarEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let days: [Day]
 }
 
 struct SwiftCalWidget: Widget {
@@ -53,7 +66,8 @@ struct SwiftCalWidget: Widget {
                     .background()
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Swift Study Calendrar")
+        .description("Track days you study Swift with streaks.")
+        .supportedFamilies([.systemMedium])
     }
 }
