@@ -7,10 +7,14 @@
 
 import SwiftUI
 import WidgetKit
+import AppIntents
 
 struct SwiftCalWidgetView: View {
     var entry: Provider.Entry
     private let columns = Array(repeating: GridItem(.flexible()), count: 7)
+    private var today: Day {
+        entry.days.filter { Calendar.current.isDate($0.date, inSameDayAs: .now) }.first ?? .init(date: .distantPast, didStudy: false)
+    }
     
     var body: some View {
         HStack {
@@ -20,12 +24,21 @@ struct SwiftCalWidgetView: View {
                         .font(.system(size: 70, design: .rounded))
                         .bold()
                         .foregroundStyle(.orange)
+                        .contentTransition(.numericText())
                     
                     Text("day streak")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
+                
+                Button(today.didStudy ? "Studied" : "Study",
+                       systemImage: today.didStudy ? "checkmark.circle" : "book",
+                       intent: ToggleStudyIntent(date: today.date))
+                    .font(.caption)
+                    .tint(today.didStudy ? . mint : .orange)
+                    .controlSize(.small)
             }
+            .frame(width: 90)
             
             Link(destination: URL(string: "calendar")!) {
                 VStack {

@@ -26,22 +26,13 @@ struct Provider: TimelineProvider {
     }
     
     @MainActor func fetDays() -> [Day] {
-        var sharedStoreURL: URL {
-            let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dambrisi-corp.SwiftCal")!
-            return container.appendingPathComponent("SwiftCal.sqlite")
-        }
-        
-        let container: ModelContainer = {
-            let config = ModelConfiguration(url: sharedStoreURL)
-            return try! ModelContainer(for: Day.self, configurations: config)
-        }()
-        
         let startDate = Date().startOfCalendarWithPrefixDays
         let endDate = Date().endOfMonth
         let predicate = #Predicate<Day> { $0.date > startDate && $0.date < endDate }
         let descriptor = FetchDescriptor<Day>(predicate: predicate, sortBy: [.init(\.date)])
         
-        return try! container.mainContext.fetch(descriptor)
+        let context = ModelContext(Persistence.container)
+        return try! context.fetch(descriptor)
     }
 }
 
