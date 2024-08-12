@@ -15,7 +15,7 @@ struct CalendarView: View {
     static private var startDate: Date { .now.startOfCalendarWithPrefixDays }
     static private var endDate: Date { .now.endOfMonth }
     
-    @Query(filter: #Predicate<Day> { $0.date > startDate && $0.date < endDate }, sort: \Day.date)
+    @Query(filter: #Predicate<Day> { $0.date >= startDate && $0.date < endDate }, sort: \Day.date)
     var days: [Day]
     
     var body: some View {

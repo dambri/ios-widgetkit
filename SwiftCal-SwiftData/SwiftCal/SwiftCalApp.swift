@@ -11,16 +11,6 @@ import SwiftData
 @main
 struct SwiftCalApp: App {
     @State private var selectedTab = 0
-    
-    static var sharedStoreURL: URL {
-        let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dambrisi-corp.SwiftCal")!
-        return container.appendingPathComponent("SwiftCal.sqlite")
-    }
-    
-    private let container: ModelContainer = {
-        let config = ModelConfiguration(url: sharedStoreURL)
-        return try! ModelContainer(for: Day.self, configurations: config)
-    }()
 
     var body: some Scene {
         WindowGroup {
@@ -33,7 +23,7 @@ struct SwiftCalApp: App {
                     .tabItem { Label("Streak", systemImage: "swift") }
                     .tag(1)
             }
-            .modelContainer(container)
+            .modelContainer(Persistence.container)
             .onOpenURL(perform: { url in
                 selectedTab = url.absoluteString == "calendar" ? 0 : 1
             })
