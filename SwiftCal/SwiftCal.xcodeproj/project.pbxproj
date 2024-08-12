@@ -24,6 +24,9 @@
 		62A4C8912C6A28A7006CB7EF /* SwiftCalWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A4C8902C6A28A7006CB7EF /* SwiftCalWidgetView.swift */; };
 		62A4C8932C6A29AD006CB7EF /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A4C8922C6A29AD006CB7EF /* CalendarHeaderView.swift */; };
 		62A4C8942C6A29AD006CB7EF /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A4C8922C6A29AD006CB7EF /* CalendarHeaderView.swift */; };
+		62A4C8962C6A2C5F006CB7EF /* SwiftCal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62A4C8682C69FF6A006CB7EF /* SwiftCal.xcdatamodeld */; };
+		62A4C8972C6A2D16006CB7EF /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A4C8712C6A07E6006CB7EF /* Date+Extension.swift */; };
+		62A4C8982C6A2D98006CB7EF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A4C8662C69FF6A006CB7EF /* Persistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,10 +293,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62A4C8962C6A2C5F006CB7EF /* SwiftCal.xcdatamodeld in Sources */,
 				62A4C8912C6A28A7006CB7EF /* SwiftCalWidgetView.swift in Sources */,
 				62A4C8942C6A29AD006CB7EF /* CalendarHeaderView.swift in Sources */,
+				62A4C8982C6A2D98006CB7EF /* Persistence.swift in Sources */,
 				62A4C8832C6A228C006CB7EF /* SwiftCalWidget.swift in Sources */,
 				62A4C8812C6A228C006CB7EF /* SwiftCalWidgetBundle.swift in Sources */,
+				62A4C8972C6A2D16006CB7EF /* Date+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
