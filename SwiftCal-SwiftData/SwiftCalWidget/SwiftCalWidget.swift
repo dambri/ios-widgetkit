@@ -7,43 +7,41 @@
 
 import WidgetKit
 import SwiftUI
-import CoreData
+import SwiftData
 
 struct Provider: TimelineProvider {
-    private let viewContext = PersistenceController.shared.container.viewContext
-    
-    private var dayFetchRequest: NSFetchRequest<Day> {
-        let request = Day.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \Day.date, ascending: true)]
-        request.predicate = NSPredicate(format: "(date >= %@) AND (date <= %@)",
-                                        Date().startOfCalendarWithPrefixDays as CVarArg,
-                                        Date().endOfMonth as CVarArg)
-        return request
-    }
-    
     func placeholder(in context: Context) -> CalendarEntry {
         CalendarEntry(date: Date(), days: [])
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (CalendarEntry) -> ()) {
-        do {
-            let days = try viewContext.fetch(dayFetchRequest)
-            let entry = CalendarEntry(date: Date(), days: days)
-            completion(entry)
-        } catch {
-            print("Widget failed to fetch days in snapshot")
-        }
+    @MainActor func getSnapshot(in context: Context, completion: @escaping (CalendarEntry) -> ()) {
+        let entry = CalendarEntry(date: Date(), days: fetDays())
+        completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        do {
-            let days = try viewContext.fetch(dayFetchRequest)
-            let entry = CalendarEntry(date: Date(), days: days)
-            let timeline = Timeline(entries: [entry], policy: .after(.now.endOfDay))
-            completion(timeline)
-        } catch {
-            print("Widget failed to fetch days in snapshot")
+    @MainActor func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        let entry = CalendarEntry(date: Date(), days: fetDays())
+        let timeline = Timeline(entries: [entry], policy: .after(.now.endOfDay))
+        completion(timeline)
+    }
+    
+    @MainActor func fetDays() -> [Day] {
+        var sharedStoreURL: URL {
+            let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dambrisi-corp.SwiftCal")!
+            return container.appendingPathComponent("SwiftCal.sqlite")
         }
+        
+        let container: ModelContainer = {
+            let config = ModelConfiguration(url: sharedStoreURL)
+            return try! ModelContainer(for: Day.self, configurations: config)
+        }()
+        
+        let startDate = Date().startOfCalendarWithPrefixDays
+        let endDate = Date().endOfMonth
+        let predicate = #Predicate<Day> { $0.date > startDate && $0.date < endDate }
+        let descriptor = FetchDescriptor<Day>(predicate: predicate, sortBy: [.init(\.date)])
+        
+        return try! container.mainContext.fetch(descriptor)
     }
 }
 
