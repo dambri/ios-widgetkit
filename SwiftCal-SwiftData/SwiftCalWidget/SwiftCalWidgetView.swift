@@ -33,10 +33,10 @@ struct SwiftCalWidgetView: View {
                     
                     LazyVGrid(columns: columns, spacing: 7) {
                         ForEach(entry.days) { day in
-                            if day.date!.monthInt != Date().monthInt {
+                            if day.date.monthInt != Date().monthInt {
                                 Text("")
                             } else {
-                                Text("\(day.date!.formatted(.dateTime.day()))")
+                                Text("\(day.date.formatted(.dateTime.day()))")
                                     .font(.caption2)
                                     .bold()
                                     .frame(maxWidth: .infinity)
@@ -60,7 +60,7 @@ struct SwiftCalWidgetView: View {
     func calculateStreakValue() -> Int {
         guard !entry.days.isEmpty else { return 0 }
 
-        let nonFutureDays = entry.days.filter { $0.date!.dayInt <= Date().dayInt }
+        let nonFutureDays = entry.days.filter { $0.date.dayInt <= Date().dayInt }
 
         var streakCount = 0
 
@@ -68,7 +68,7 @@ struct SwiftCalWidgetView: View {
             if day.didStudy {
                 streakCount += 1
             } else {
-                if day.date!.dayInt != Date().dayInt {
+                if day.date.dayInt != Date().dayInt {
                     break
                 }
             }
