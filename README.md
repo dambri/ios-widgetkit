@@ -36,3 +36,16 @@ Two types of widget:
 #### Target
 
 Minimum iOS version: iOS 17.0
+
+
+## SwiftCal widget
+
+Purpose is to track days when you learn Swift with a calendar and days streak view. All datas are save into local data.
+
+SwiftCal is made with CoreData and SwiftCal-SwifData is made with SwiftData.
+
+Both widget do the same with a bonus on SwiftData widget. He is interactive with a button to mark/unmark your day.
+
+#### Target
+
+Minimum iOS version: iOS 17.0
