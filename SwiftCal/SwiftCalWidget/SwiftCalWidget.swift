@@ -39,30 +39,16 @@ struct SimpleEntry: TimelineEntry {
     let emoji: String
 }
 
-struct SwiftCalWidgetEntryView : View {
-    var entry: Provider.Entry
-
-    var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Emoji:")
-            Text(entry.emoji)
-        }
-    }
-}
-
 struct SwiftCalWidget: Widget {
     let kind: String = "SwiftCalWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
-                SwiftCalWidgetEntryView(entry: entry)
+                SwiftCalWidgetView(entry: entry)
                     .containerBackground(.fill.tertiary, for: .widget)
             } else {
-                SwiftCalWidgetEntryView(entry: entry)
+                SwiftCalWidgetView(entry: entry)
                     .padding()
                     .background()
             }
@@ -70,11 +56,4 @@ struct SwiftCalWidget: Widget {
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
     }
-}
-
-#Preview(as: .systemSmall) {
-    SwiftCalWidget()
-} timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
 }
