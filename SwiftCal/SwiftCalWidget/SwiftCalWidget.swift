@@ -68,6 +68,6 @@ struct SwiftCalWidget: Widget {
         }
         .configurationDisplayName("Swift Study Calendrar")
         .description("Track days you study Swift with streaks.")
-        .supportedFamilies([.systemMedium])
+        .supportedFamilies([.systemMedium, .accessoryInline, .accessoryCircular, .accessoryRectangular])
     }
 }
