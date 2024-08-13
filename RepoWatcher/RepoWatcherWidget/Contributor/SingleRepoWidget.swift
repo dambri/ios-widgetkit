@@ -75,6 +75,6 @@ struct SingleRepoWidget: Widget {
         }
         .configurationDisplayName("Single Repo")
         .description("Track a single repository's top contributors.")
-        .supportedFamilies([.systemLarge, .systemMedium])
+        .supportedFamilies([.systemLarge,.systemMedium, .accessoryInline, .accessoryRectangular, .accessoryCircular])
     }
 }
