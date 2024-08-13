@@ -9,55 +9,30 @@ import SwiftUI
 import WidgetKit
 
 struct SwiftCalWidgetView: View {
-    var entry: Provider.Entry
-    private let columns = Array(repeating: GridItem(.flexible()), count: 7)
+    @Environment(\.widgetFamily) var family
+    var entry: CalendarEntry
     
     var body: some View {
-        HStack {
-            Link(destination: URL(string: "streak")!) {
-                VStack {
-                    Text("\(calculateStreakValue())")
-                        .font(.system(size: 70, design: .rounded))
-                        .bold()
-                        .foregroundStyle(.orange)
-                    
-                    Text("day streak")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
-            
-            Link(destination: URL(string: "calendar")!) {
-                VStack {
-                    CalendarHeaderView(font: .caption)
-                    
-                    LazyVGrid(columns: columns, spacing: 7) {
-                        ForEach(entry.days) { day in
-                            if day.date!.monthInt != Date().monthInt {
-                                Text("")
-                            } else {
-                                Text("\(day.date!.formatted(.dateTime.day()))")
-                                    .font(.caption2)
-                                    .bold()
-                                    .frame(maxWidth: .infinity)
-                                    .foregroundStyle(day.didStudy ? .orange : .secondary)
-                                    .background(
-                                        Circle()
-                                            .foregroundStyle(.orange.opacity(day.didStudy ? 0.3 : 0.0))
-                                            .scaleEffect(1.5)
-                                    )
-                            }
-                        }
-                    }
-                }
-                .padding(.leading, 6)
-            }
-            
+        switch family {
+        case .systemSmall, .systemLarge, .systemExtraLarge:
+            EmptyView()
+        case .systemMedium:
+            MediumCalendarView(entry: entry, streakValue: calculateStreakValue())
+        case .accessoryCorner:
+            EmptyView()
+        case .accessoryCircular:
+            LockScreenCircularView(entry: entry)
+        case .accessoryRectangular:
+            LockScreenRectangularView(entry: entry)
+        case .accessoryInline:
+            Label("Streak - \(calculateStreakValue()) days", systemImage: "swift")
+                .widgetURL(URL(string: "streak"))
+        @unknown default:
+            EmptyView()
         }
-        .padding()
     }
     
-    func calculateStreakValue() -> Int {
+    private func calculateStreakValue() -> Int {
         guard !entry.days.isEmpty else { return 0 }
 
         let nonFutureDays = entry.days.filter { $0.date!.dayInt <= Date().dayInt }
@@ -78,7 +53,7 @@ struct SwiftCalWidgetView: View {
     }
 }
 
-#Preview(as: .systemMedium) {
+#Preview(as: .accessoryInline) {
     SwiftCalWidget()
 } timeline: {
     CalendarEntry(date: .now, days: [])
