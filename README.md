@@ -49,3 +49,9 @@ Both widget do the same with a bonus on SwiftData widget. He is interactive with
 #### Target
 
 Minimum iOS version: iOS 17.0
+
+## Lockscreen widgets
+
+They are available on:
+- Repo Watcher: inline and rectangular
+- SwiftCal widget (CoreData): inline, cicular and rectangular
